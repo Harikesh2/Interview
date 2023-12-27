@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import React from 'react';
 import axios from 'axios';
+import './App.css'
+import SignUp from './Component/SignUp';
+import AdminInterface from './Component/Interface/AdminInterface';
+import UserInterface from './Component/Interface/UserInterface';
 
 function App() {
   const [question, setQuestion] = useState('');
@@ -23,7 +27,7 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/submit', formData);
+      await axios.post('http://localhost:5000', formData);
       alert('Survey response submitted!');
       setFormData({
         name: '',
@@ -40,47 +44,8 @@ function App() {
   };
 
   return (
-      <div>
-      <h1>Survey Form</h1>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Name:
-            <input type="text" name="name" value={formData.name} onChange={handleChange} />
-          </label>
-          <br />
-          <label>
-            Gender:
-            <input type="text" name="gender" value={formData.gender} onChange={handleChange} />
-          </label>
-          <br />
-          <label>
-            Nationality:
-            <input type="text" name="nationality" value={formData.nationality} onChange={handleChange} />
-          </label>
-          <br />
-          <label>
-            Email:
-            <input type="text" name="email" value={formData.email} onChange={handleChange} />
-          </label>
-          <br />
-          <label>
-            Phone:
-            <input type="text" name="phone" value={formData.phone} onChange={handleChange} />
-          </label>
-          <br />
-          <label>
-            Address:
-            <input type="text" name="address" value={formData.address} onChange={handleChange} />
-          </label>
-          <br />
-          <label>
-            Message:
-            <textarea name="message" value={formData.message} onChange={handleChange} />
-          </label>
-          <br />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+     
+      <UserInterface />
   );
 }
 
